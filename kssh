@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+# Copyright (c) 2022 kk
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+require_relative 'config'
+
+opts = ARGV
+
+# default key path
+default_key_path = '~/.ssh'
+
+# config host list
+kssh_hosts = @kssh_hosts
+
+unless opts.length >= 1
+  print "Usage: \n  kssh [list|host[number]]!"
+  exit(true)
+end
+if opts.first == 'list'
+  puts 'Hosts List:'
+  kssh_hosts.each_with_index do |value, index|
+    index += 1
+    puts "[#{index}]#{value[:name]} => #{value[:ip]}"
+  end
+  exit(true)
+end
+
+num = opts.first
+val = kssh_hosts[num.to_i - 1]
+system("ssh -i #{default_key_path}/#{val[:passwdOrKey]} #{val[:username]}@#{val[:ip]}")
+
