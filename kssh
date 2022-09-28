@@ -18,6 +18,7 @@ unless opts.length >= 1
   print "Usage: \n  kssh [list|host[number]]!"
   exit(true)
 end
+
 if opts.first == 'list'
   puts 'Hosts List:'
   kssh_hosts.each_with_index do |value, index|
