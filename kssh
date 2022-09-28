@@ -22,7 +22,7 @@ if opts.first == 'list'
   puts 'Hosts List:'
   kssh_hosts.each_with_index do |value, index|
     index += 1
-    puts "[#{index}]#{value[:name]} => #{value[:ip]}"
+    puts "  [#{index}]#{value[:name]} => #{value[:ip]}"
   end
   exit(true)
 end
