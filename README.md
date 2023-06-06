@@ -46,6 +46,7 @@ kssh 1
 ## import[options]
 
 ```bash
+cd ~/.kssh
 # config csv hosts
 cat hosts.csv
 node01, 1.1.1.1
