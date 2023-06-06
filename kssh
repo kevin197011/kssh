@@ -1,10 +1,13 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 # Copyright (c) 2022 kk
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
 require_relative 'config'
+require 'terminal-table'
 
 opts = ARGV
 
@@ -20,15 +23,19 @@ unless opts.length >= 1
 end
 
 if opts.first == 'list'
-  puts 'Hosts List:'
+  # puts 'Hosts List:'
+  rows = []
   kssh_hosts.each_with_index do |value, index|
     index += 1
-    puts "  [#{index}]#{value[:name]} => #{value[:ip]}"
+    rows << [index.to_s, value[:name], value[:ip]]
+    # puts "  [#{index}]#{value[:name]} => #{value[:ip]}"
   end
+  tables = Terminal::Table.new(title: 'Kssh Tool', headings: ['No.', 'Hostname', 'Address'], rows:)
+  puts tables
+
   exit(true)
 end
 
 num = opts.first
 val = kssh_hosts[num.to_i - 1]
 system("ssh -i #{default_key_path}/#{val[:passwdOrKey]} #{val[:username]}@#{val[:ip]}")
-

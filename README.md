@@ -1,14 +1,43 @@
 # kssh
+
 kssh
 
+## install
+
 ```bash
-~ kssh list
-Hosts List:
-  [1]devops-node1 => 1.2.3.1
-  [2]devops-node2 => 1.2.3.2
-  [3]devops-node3 => 1.2.3.3
-~ kssh 1
-[root@centos-s-4vcpu-8gb-amd-sgp1-01 ~]# pwd
-/root
-[root@centos-s-4vcpu-8gb-amd-sgp1-01 ~]#
+git clone https://github.com/kevin197011/kssh.git ~/.kssh
+cd .kssh && bundle install
+grep -q 'export PATH=$PATH:~/.kssh' ~/.zshrc || echo 'export PATH=$PATH:~/.kssh' >> ~/.zshrc
+```
+
+## config
+
+```bash
+cat ~/.kssh/config.rb
+
+# config host list
+@kssh_hosts = [
+  { 'name': 'devops-node1', 'ip': '1.2.3.1', 'username': 'root', 'method': 'key', 'passwdOrKey': 'id_rsa' },
+  { 'name': 'devops-node2', 'ip': '1.2.3.2', 'username': 'root', 'method': 'key', 'passwdOrKey': 'id_rsa' },
+  { 'name': 'devops-node3', 'ip': '1.2.3.3', 'username': 'root', 'method': 'key', 'passwdOrKey': 'id_rsa' }
+]
+
+```
+
+## usage
+
+```bash
+# list hosts
+kssh list
++--------------------------------------------+
+|                 Kssh Tool                  |
++-----+---------------------+----------------+
+| No. | Hostname            | Address        |
++-----+---------------------+----------------+
+| 1   | devops-node1        | 1.2.3.1        |
+| 2   | zabbix              | 1.2.3.2        |
+| 3   | devops-node3        | 1.2.3.3        |
++-----+---------------------+----------------+
+# login in host
+kssh 1
 ```
