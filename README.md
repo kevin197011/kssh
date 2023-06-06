@@ -7,13 +7,13 @@ kssh
 ```bash
 git clone https://github.com/kevin197011/kssh.git ~/.kssh
 cd .kssh && bundle install
-grep -q 'export PATH=$PATH:~/.kssh' ~/.zshrc || echo 'export PATH=$PATH:~/.kssh' >> ~/.zshrc
+grep -q 'export PATH=$PATH:~/.kssh/bin' ~/.zshrc || echo 'export PATH=$PATH:~/.kssh/bin' >> ~/.zshrc
 ```
 
 ## config
 
 ```bash
-cat ~/.kssh/config.rb
+cat ~/.kssh/config/config.rb
 
 # config host list
 @kssh_hosts = [
