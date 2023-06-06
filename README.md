@@ -8,6 +8,7 @@ kssh
 git clone https://github.com/kevin197011/kssh.git ~/.kssh
 cd .kssh && bundle install
 grep -q 'export PATH=$PATH:~/.kssh/bin' ~/.zshrc || echo 'export PATH=$PATH:~/.kssh/bin' >> ~/.zshrc
+zsh
 ```
 
 ## config
