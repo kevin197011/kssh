@@ -14,6 +14,7 @@ task :run do
 end
 
 task :import do
+  @username ||= 'root'
   @data = CSV.read "#{File.dirname(__FILE__)}/hosts.csv"
   FileUtils.cp "#{File.dirname(__FILE__)}/config/config.rb", "#{File.dirname(__FILE__)}/config/config.rb.bak"
 

@@ -7,7 +7,7 @@ kssh
 ```bash
 git clone https://github.com/kevin197011/kssh.git ~/.kssh
 cd .kssh && bundle install
-grep -q 'export PATH=$PATH:~/.kssh/bin' ~/.zshrc || echo 'export PATH=$PATH:~/.kssh/bin' >> ~/.zshrc
+grep -q 'export PATH="$PATH:~/.kssh/bin"' ~/.zshrc || echo 'export PATH="$PATH:~/.kssh/bin"' >> ~/.zshrc
 zsh
 ```
 
@@ -41,4 +41,17 @@ kssh list
 +-----+---------------------+----------------+
 # login in host
 kssh 1
+```
+
+## import hosts config [options]
+
+```bash
+# config csv hosts
+cat hosts.csv
+node01, 1.1.1.1
+node02, 1.1.1.2
+node03, 1.1.1.3
+
+# import hosts config
+rake import
 ```
