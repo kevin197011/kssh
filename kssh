@@ -30,7 +30,7 @@ if opts.first == 'list'
     rows << [index.to_s, value[:name], value[:ip]]
     # puts "  [#{index}]#{value[:name]} => #{value[:ip]}"
   end
-  tables = Terminal::Table.new(title: 'Kssh Tool', headings: ['No.', 'Hostname', 'Address'], rows:)
+  tables = Terminal::Table.new(title: 'Kssh Tools', headings: ['No.', 'Hostname', 'Address'], rows:)
   puts tables
 
   exit(true)
