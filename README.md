@@ -43,7 +43,7 @@ kssh list
 kssh 1
 ```
 
-## import hosts config [options]
+## import[options]
 
 ```bash
 # config csv hosts
