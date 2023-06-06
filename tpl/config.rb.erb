@@ -3,6 +3,6 @@
 # config host list
 @kssh_hosts = [
 <% @data.each do |d| -%>
-  { 'name': '<%= d[0] %>', 'ip': '<%= d[1] %>', 'username': '<%= @username %>', 'method': 'key', 'passwdOrKey': 'id_rsa' }<%= ',' unless d == @data.last %>
+  { 'name': '<%= d[0].strip %>', 'ip': '<%= d[1].strip %>', 'username': '<%= @username %>', 'method': 'key', 'passwdOrKey': 'id_rsa' }<%= ',' unless d == @data.last %>
 <% end -%>
 ].freeze
