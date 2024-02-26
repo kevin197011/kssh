@@ -16,11 +16,7 @@ module Kssh
 
     def self.run
       loop do
-        puts "\nSSH Inventory Management:"
-        puts '1. List hosts'
-        puts '2. Login host'
-        puts '3. Exit'
-        print 'Enter your choice: '
+        banner
         choice = gets.chomp.to_i
 
         case choice
@@ -36,6 +32,14 @@ module Kssh
           puts 'Invalid choice. Please enter a valid option.'
         end
       end
+    end
+
+    def self.banner
+      puts "\nSSH Inventory Management:"
+      puts '1. List hosts'
+      puts '2. Login host'
+      puts '3. Exit'
+      print 'Enter your choice: '
     end
   end
 end
