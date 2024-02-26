@@ -11,7 +11,7 @@ require_relative 'inventory'
 
 module Kssh
   class Manager
-    @@inventory_config = Kssh::Config.load("#{__dir__}/../../config/inventory.yml")
+    @@inventory_config = Kssh::Config.load("#{__dir__}/../../config/kssh.yml")
     @@ssh_inventory = Kssh::Inventory.new(@@inventory_config)
 
     def self.run
