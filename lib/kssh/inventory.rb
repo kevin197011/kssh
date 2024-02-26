@@ -9,41 +9,31 @@ require 'yaml'
 
 module Kssh
   class Inventory
-    def initialize(file_path)
-      @file_path = file_path
-      load_inventory
-    end
-
-    def add_host(host, username, password)
-      @inventory[host] = { username: username, password: password }
-      save_inventory
-      puts "Host #{host} added to inventory."
+    def initialize(inventory_config)
+      @inventory_config = inventory_config
     end
 
     def list_hosts
       puts 'SSH Inventory:'
-      @inventory.each do |host, info|
-        puts "Host: #{host}, Username: #{info[:username]}, Password: #{info[:password]}"
+      id = 1
+      @inventory_config['hosts'].each do |host|
+        puts "  [#{id}] => #{host['hostname']} (#{host['ip']})"
+        id += 1
       end
     end
 
-    def remove_host(host)
-      if @inventory.delete(host)
-        save_inventory
-        puts "Host #{host} removed from inventory."
-      else
-        puts "Host #{host} not found in inventory."
-      end
+    def login_host(id)
+      host = get_host(id)
+      username = host['username'] || @inventory_config['default_username']
+      key_path = host['key_path'] || @inventory_config['default_key_path']
+      port = host['port'] || @inventory_config['default_port']
+      system("ssh -i #{key_path} -p #{port} #{username}@#{host['ip']}")
     end
 
     private
 
-    def load_inventory
-      @inventory = File.exist?(@file_path) ? YAML.load_file(@file_path) : {}
-    end
-
-    def save_inventory
-      File.open(@file_path, 'w') { |file| file.write(@inventory.to_yaml) }
+    def get_host(id)
+      @inventory_config['hosts'][id - 1]
     end
   end
 end
