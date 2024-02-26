@@ -1,25 +1,17 @@
 # frozen_string_literal: true
 
-require 'csv'
-require 'erb'
-require 'fileutils'
+# Copyright (c) 2024 kk
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
 
-task default: [:run]
+require 'time'
 
-task :run do
-  sh 'rubocop -A'
-  sh 'git add .'
-  sh 'git commit -m "update."'
-  sh 'git push -u origin main'
-end
+task default: %w[push]
 
-task :import do
-  @username ||= 'root'
-  @data = CSV.read "#{File.dirname(__FILE__)}/hosts.csv"
-  FileUtils.cp "#{File.dirname(__FILE__)}/config/config.rb", "#{File.dirname(__FILE__)}/config/config.rb.bak"
-
-  File.open("#{File.dirname(__FILE__)}/config/config.rb", 'w') do |f|
-    tpl = File.read("#{File.dirname(__FILE__)}/tpl/config.rb.erb")
-    f.write(ERB.new(tpl, trim_mode: '-').result(binding))
-  end
+task :push do
+  system 'git add .'
+  system "git commit -m 'Update #{Time.now}.'"
+  system 'git pull'
+  system 'git push origin main'
 end

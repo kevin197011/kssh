@@ -1,8 +1,0 @@
-# frozen_string_literal: true
-
-# config host list
-@kssh_hosts = [
-<% @data.each do |d| -%>
-  { 'name': '<%= d[0].strip %>', 'ip': '<%= d[1].strip %>', 'username': '<%= @username %>', 'method': 'key', 'passwdOrKey': 'id_rsa' }<%= ',' unless d == @data.last %>
-<% end -%>
-].freeze
