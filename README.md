@@ -12,7 +12,7 @@ cd kssh
 ## config
 
 ```bash
-cat config/inventory.yml
+cat config/kssh.yml
 
 ---
 default_username: root
