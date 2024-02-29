@@ -34,6 +34,8 @@ module Kssh
       end
     end
 
+    private
+    
     def self.banner
       puts "\nSSH Inventory Management:"
       puts '1. List hosts'
