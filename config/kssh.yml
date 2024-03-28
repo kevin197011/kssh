@@ -1,6 +1,0 @@
----
-default_username: root
-default_key_path: ~/.ssh/id_rsa.key
-default_port: 22
-hosts:
-  - { hostname: node01, ip: 178.128.102.24, username: root, key_path: ~/.ssh/id_rsa ,port: 22 }
